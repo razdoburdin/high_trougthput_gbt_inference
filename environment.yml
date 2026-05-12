@@ -1,0 +1,16 @@
+name: gbt
+channels:
+  - https://software.repos.intel.com/python/conda/
+  - conda-forge
+dependencies:
+  - numpy
+  - xgboost
+  - scikit-learn-intelex
+  - pandas
+  - scikit-learn
+  - requests
+  - tqdm
+  - treelite
+  - tl2cgen
+  - onnxmltools
+  - onnxruntime
