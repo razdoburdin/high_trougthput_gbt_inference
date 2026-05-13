@@ -23,7 +23,7 @@ configs = {
     "airline": {
         "objective": "binary:logistic",
         "max_depth": 8,
-        "n_estimators": 1000
+        "n_estimators": 100
     },
     "airline-ohe": {
         "objective": "binary:logistic",

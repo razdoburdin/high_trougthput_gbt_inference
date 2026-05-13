@@ -28,5 +28,8 @@ if __name__ == '__main__':
         booster, objective = models.get_model(name)
         treelite_model = treelite.frontend.from_xgboost(booster)
         libpath = models.model_path("treelite", name, ext=".so")
-        tl2cgen.export_lib(treelite_model, toolchain="gcc", libpath=libpath,
-                           params={"parallel_comp": os.cpu_count()})
+        tl2cgen.export_lib(treelite_model,
+                           toolchain="gcc",
+                           libpath=libpath,
+                           options=["-O3", "-march=native"],
+                           params={"parallel_comp": 112, "quantize": 1})

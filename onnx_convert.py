@@ -26,8 +26,7 @@ if __name__ == '__main__':
         print(f"Converting: {name}")
 
         booster, objective = models.get_model(name)
-        [X, _] = datasets.get_data(name, "test")
-        n_features = X.shape[1]
+        n_features = booster.num_features()
 
         initial_type = [("input", FloatTensorType([None, n_features]))]
         onnx_model = onnxmltools.convert_xgboost(booster, initial_types=initial_type)

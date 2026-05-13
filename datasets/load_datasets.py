@@ -25,6 +25,10 @@ from .loader_multiclass import (letters, msrank)
 from .loader_regression import (california_housing, year_prediction_msd)
 
 dataset_loaders: Dict[str, Callable[[Path], bool]] = {
+    "a9a": a_nine_a,
+    "airline": airline,
+    "airline-ohe": airline_ohe,
+    "california_housing": california_housing,
     "creditcard": creditcard,
     "higgs": higgs,
     "susy": susy,
