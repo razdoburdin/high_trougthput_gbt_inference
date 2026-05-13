@@ -25,3 +25,13 @@ conda activate gbt
 python treelite_convert.py
 python onnx_convert.py
 ```
+
+## Launch benchmark
+```
+./bench.sh
+```
+
+## Look for results
+```
+cd results
+```
