@@ -19,6 +19,8 @@ import time
 import argparse
 import daal4py
 import tl2cgen
+import treelite
+import treelite.gtil
 import onnxruntime as ort
 
 import datasets
@@ -59,12 +61,20 @@ if __name__ == '__main__':
                 out = model_daal.predict(X)
                 end = time.perf_counter()
 
-            elif args.framework == "treelite":
+            elif args.framework == "tl2cgen":
                 X = np.asarray(X, np.float32)
-                libpath = models.model_path("treelite", name, ext=".so")
+                libpath = models.model_path("tl2cgen", name, ext=".so")
                 predictor = tl2cgen.Predictor(libpath)
                 begin = time.perf_counter()
                 out = predictor.predict(tl2cgen.DMatrix(X))
+                end = time.perf_counter()
+
+            elif args.framework == "treelite":
+                X = np.asarray(X, np.float32)
+                tl_path = models.model_path("treelite", name, ext=".tmd")
+                tl_model = treelite.Model.deserialize(tl_path)
+                begin = time.perf_counter()
+                out = treelite.gtil.predict(tl_model, X, nthread=-1)
                 end = time.perf_counter()
 
             elif args.framework == "onnx":

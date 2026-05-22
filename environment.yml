@@ -1,6 +1,5 @@
 name: gbt
 channels:
-  - https://software.repos.intel.com/python/conda/
   - conda-forge
 dependencies:
   - numpy

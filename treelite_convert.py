@@ -14,9 +14,7 @@
 # limitations under the License.
 # ===============================================================================
 
-import os
 import treelite
-import tl2cgen
 
 import datasets
 import models
@@ -25,11 +23,7 @@ if __name__ == '__main__':
     for name in datasets.dataset_loaders:
         print(f"Converting: {name}")
 
-        booster, objective = models.get_model(name)
-        treelite_model = treelite.frontend.from_xgboost(booster)
-        libpath = models.model_path("treelite", name, ext=".so")
-        tl2cgen.export_lib(treelite_model,
-                           toolchain="gcc",
-                           libpath=libpath,
-                           options=["-O3", "-march=native"],
-                           params={"parallel_comp": 112, "quantize": 1})
+        booster, _ = models.get_model(name)
+        tl_model = treelite.frontend.from_xgboost(booster)
+        tl_path = models.model_path("treelite", name, ext=".tmd")
+        tl_model.serialize(tl_path)
