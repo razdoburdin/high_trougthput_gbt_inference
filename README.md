@@ -24,6 +24,7 @@ conda activate gbt
 ```
 python treelite_convert.py
 python onnx_convert.py
+python tl2cgen_convert.py
 ```
 
 ## Launch benchmark
